@@ -1,8 +1,4 @@
-diff
---- a/.gitignore
-+++ b/.gitignore
-@@ -6,3 +6,4 @@
- .DS_Store
- *.log
- .env.local
-+.env
+node_modules/
+package-lock.json
+dist/
+.next/
