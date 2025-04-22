@@ -10,3 +10,6 @@ To get started, take a look at src/app/page.tsx.
 To create an installable Android application that stores data in Google Sheets, you'll need to create a new Android project using Android Studio. You can then connect to the Google Sheets API for Android using Java or Kotlin. This requires significant code rewrite and different architectural decisions.
 
 This app helps drivers to send data to Google sheets.
+
+## Project Description
+This project is a web app built with Next.js.
