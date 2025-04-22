@@ -1,0 +1,4 @@
+OK. Since you have already initialized the project locally all that remains is to push the local commits to the remote repository.
+
+    git push -u origin main
+    
