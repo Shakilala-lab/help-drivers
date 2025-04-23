@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import { Car, CreditCard, Gauge, Syringe, Fuel, CalendarIcon } from "lucide-react";
 import { writeToSheet } from "@/services/google-sheets";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 const dataEntrySchema = z.object({
   date: z.date({
@@ -196,7 +196,7 @@ function DataEntryForm({ username, carNumber }: { username: string | null, carNu
                         <FormItem className="flex flex-col items-center">
                           <FormLabel>Восколько поставил отметку медика. <Syringe className="inline-block h-4 w-4 ml-1" /></FormLabel>
                           <FormControl>
-                            <Input placeholder="Введите время" {...field} />
+                        <Input placeholder="Введите время" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -320,18 +320,22 @@ function DataEntryForm({ username, carNumber }: { username: string | null, carNu
   );
 }
 
-export default function DataEntryPage() {
+function DataEntryPageContent() {
   const searchParams = useSearchParams();
   const username = searchParams.get("username");
   const carNumber = searchParams.get("carNumber");
 
+  return <DataEntryForm username={username} carNumber={carNumber} />;
+}
+
+export default function DataEntryPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <DataEntryForm username={username} carNumber={carNumber} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <DataEntryPageContent />
+        </Suspense>
       </main>
     </div>
   );
 }
-
-
