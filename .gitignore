@@ -1,4 +1,7 @@
-node_modules/
-package-lock.json
-dist/
-.next/
+diff
+--- a/.gitignore
++++ b/.gitignore
+@@ -0,0 +1,2 @@
++node_modules
++.next
+node_modules
