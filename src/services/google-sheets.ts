@@ -1,7 +1,7 @@
 'use server';
 import { google } from 'googleapis';
 import { JWT } from 'google-auth-library';
-import serviceAccountKey from '@/config/service-account-key.json';
+import serviceAccountKey from '../../service-account-key.json';
 interface serviceAccount {
   private_key: string;
   client_email: string;
@@ -43,6 +43,8 @@ async function getNextAvailableRow(sheets: any, spreadsheetId: string, sheetName
   const result = await sheets.spreadsheets.values.get({
     spreadsheetId,
     range: `${sheetName}!A:A`,
+    valueRenderOption: 'UNFORMATTED_VALUE',
+    dateTimeRenderOption: 'SERIAL_NUMBER',
   });
 
   const values = result.data.values;
@@ -171,5 +173,3 @@ export async function createSheet(username: string): Promise<void> {
     throw error;
   }
 }
-
-
